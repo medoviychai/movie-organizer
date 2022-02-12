@@ -1,0 +1,9 @@
+.movies__item {
+    margin-bottom: 21px;
+}
+
+@media(max-width: 700px) {
+    .movies__item {
+        min-width: 300px;
+    }
+}
