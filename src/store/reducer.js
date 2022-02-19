@@ -2,6 +2,7 @@ const initialState = {
    searchLine: '',
    movies: [],
    favMovies: [],
+   idList: "",
 }
 
 function reducer(state = initialState, action) {
@@ -46,6 +47,12 @@ function reducer(state = initialState, action) {
       return initialState;
       // return {...state, favMovies: arr}
    }
+   else if (action.type === 'GET_LIST_ID') {
+      return {
+         ...state, idList: action.payload.listId
+      }
+   }
+
    return initialState;
 }
 // console.log("reducer", initialState)

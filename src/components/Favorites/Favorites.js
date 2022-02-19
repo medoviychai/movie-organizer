@@ -10,6 +10,7 @@ class Favorites extends Component {
         buttonSaveClass: "favorites__save",
         linkClass: "link_hidden",
         inpDisable: false,
+        listId: []
     }
     removeFilm = (idx) => {
         const clone = this.state.movies;
@@ -31,7 +32,59 @@ class Favorites extends Component {
             buttonSaveClass: "favorites__save_hidden", 
             linkClass: "link_active", 
             inpDisable: true})
+
+
+
+            this.state.movies.filter(item => {
+                this.state.listId.push(item.id)
+            });
+            // console.log(this.state.listId)
+    
+            const data = {
+                title: this.state.title,
+                movies: [
+                    this.state.listId
+                ]
+            }
+            // console.log('data', data);
+    
+                fetch('https://acb-api.algoritmika.org/api/movies/list/', {
+                  method: 'POST',
+                  body: JSON.stringify(data), 
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    
+                    this.setState({listId: data.id})  
+                    console.log("Data id", data.id) 
+                })
+                .catch(err => {
+                    console.log(err);
+                })
     }
+
+    // saveListHandler = e => {
+        
+
+    //     // fetch('https://acb-api.algoritmika.org/api/movies/list/', {
+    //     //     method: 'POST',
+    //     //     body: JSON.stringify(this.state.movies),
+    //     //     headers: {
+    //     //       'Content-type': 'application/json',
+    //     //     },
+            
+    //     // })
+    //     // .then(response => response.json())
+    //     // .then(data => console.log(JSON.stringify(data)))
+    //     // .then(res => res.json())
+    //     // .then(data => {
+    //     //     console.log(data);
+    //     // })
+    //     // console.log(this.state.movies)
+    // }
 
     componentDidMount() {
         const state = store.getState();
@@ -45,6 +98,16 @@ class Favorites extends Component {
         }) 
         // console.log("fav state 2", this.state.movies);
     }
+
+    getListId = (listId) => {
+        store.dispatch({
+            type: 'GET_LIST_ID',
+            payload: {
+                listId: listId,
+            }
+        })
+    }
+
     render() { 
         // console.log("fav state 2", this.state.movies);
         return (
