@@ -10,35 +10,25 @@ class ListPage extends Component {
     componentDidMount() {
         console.log("params", this.props.match.params);
         const id = this.props.match.params.id;
-        console.log("list page id", id);
-        // TODO: запрос к сервер на получение списка
-        // TODO: запросы к серверу по всем imdbID
-        // const state = store.getState();
-        // this.setState({movies: state.favMovies});
-
-        // store.subscribe(() => {
-        //     const state = store.getState();
-        //     this.setState({
-        //         movies: state.favMovies
-        //     })
-        // }) 
-
-        // let ids = '535c2062-c93d-4e37-9883-e845fd1c1e7f';
 
         if (id) {
             const link = `https://acb-api.algoritmika.org/api/movies/list/${id}`
-            console.log(link);
+            // console.log(link);
             fetch(link)
                 .then(res => res.json())
                 .then(data => {
                     this.setState({movies: data.movies, title: data.title});
-                    console.log('listpage', data)
+                    // console.log('listpage', this.state.movies)
                 })
                 .catch((err) => console.log(err))
+
+                // console.log("state movies", this.state.movies);
         }  else {
             console.log(`Список не найден по id ${id}`);
         }
+
     }
+
     render() { 
         return (
             <div className="list-page">
@@ -46,6 +36,7 @@ class ListPage extends Component {
                 <ul>
                     {this.state.movies.map((item) => {
                         let link = item.id;
+                        // console.log('id of item', link);
                         let filmLink = `https://www.imdb.com/title/${link}/`
                         return (
                             <li key={item.imdbID}>

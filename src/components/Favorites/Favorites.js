@@ -33,8 +33,6 @@ class Favorites extends Component {
             linkClass: "link_active", 
             inpDisable: true})
 
-
-
             this.state.movies.filter(item => {
                 this.state.listId.push(item.id)
             });
@@ -42,9 +40,9 @@ class Favorites extends Component {
     
             const data = {
                 title: this.state.title,
-                movies: [
-                    this.state.listId
-                ]
+                movies:
+                    this.state.movies
+    
             }
             // console.log('data', data);
     
@@ -59,32 +57,12 @@ class Favorites extends Component {
                 .then(data => {
                     
                     this.setState({listId: data.id})  
-                    console.log("Data id", data.id) 
+                    console.log("Data", data) 
                 })
                 .catch(err => {
                     console.log(err);
                 })
     }
-
-    // saveListHandler = e => {
-        
-
-    //     // fetch('https://acb-api.algoritmika.org/api/movies/list/', {
-    //     //     method: 'POST',
-    //     //     body: JSON.stringify(this.state.movies),
-    //     //     headers: {
-    //     //       'Content-type': 'application/json',
-    //     //     },
-            
-    //     // })
-    //     // .then(response => response.json())
-    //     // .then(data => console.log(JSON.stringify(data)))
-    //     // .then(res => res.json())
-    //     // .then(data => {
-    //     //     console.log(data);
-    //     // })
-    //     // console.log(this.state.movies)
-    // }
 
     componentDidMount() {
         const state = store.getState();
@@ -119,7 +97,7 @@ class Favorites extends Component {
                     })}
                 </ul>
                 <button type="button" className={this.state.buttonSaveClass} onClick={this.saveList}>Сохранить список</button>
-                <Link to='/list/:id' className={this.state.linkClass}>Перейти к списку</Link>
+                <Link to={`/list/${this.state.listId}`} className={this.state.linkClass}>Перейти к списку</Link>
             </div>
         );
     }

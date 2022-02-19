@@ -21,8 +21,7 @@ class SearchBox extends Component {
     }
     
     componentDidMount() {
-        // this.getFilms(this.state.searchLine)
-        // console.log(this.state.filmInfo);
+
 
         const state = store.getState();
         this.setState({searchLine: state.searchLine});
@@ -32,9 +31,7 @@ class SearchBox extends Component {
     }
     searchLineChangeHandler = (e) => {
         // console.log(e.target.value);
-        this.setState({ searchLine: e.target.value });
-        // this.getFilms(this.state.searchLine)
-        
+        this.setState({ searchLine: e.target.value });        
     }
     searchBoxSubmitHandler = (e) => {
         e.preventDefault();
