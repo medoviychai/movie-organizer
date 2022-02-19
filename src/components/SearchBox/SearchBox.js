@@ -8,21 +8,16 @@ class SearchBox extends Component {
         filmInfo: '',
     }
     getFilms = (filmName) => {
-        // console.log(filmName)
         let link = `http://www.omdbapi.com/?&apikey=fcd2505c&s=${filmName}`;
-        // console.log('link',link);
         fetch(link)
            .then((res) => res.json())
            .then((data) => {
-            //   console.log(data);
               this.setState({filmInfo: data})
            })
            .catch((err) => console.log(err))
     }
     
     componentDidMount() {
-
-
         const state = store.getState();
         this.setState({searchLine: state.searchLine});
     }
@@ -30,7 +25,6 @@ class SearchBox extends Component {
         this.getFilms(this.state.searchLine)
     }
     searchLineChangeHandler = (e) => {
-        // console.log(e.target.value);
         this.setState({ searchLine: e.target.value });        
     }
     searchBoxSubmitHandler = (e) => {
@@ -42,10 +36,6 @@ class SearchBox extends Component {
             type: 'FIND_FILM',
             payload: {filmInfo: this.state.filmInfo}
         })
-        
-        // const state = store.getState();
-        // console.log(state.movies[0].Search);
-        // console.log(this.state.filmInfo);
     }
     render() {
         const { searchLine } = this.state;

@@ -23,10 +23,8 @@
         display: flex;
         flex-direction: column-reverse;
         gap: 20px;
+        padding-top: 10px;
     }
-}
-
-@media(max-width: 321px) {
     .main-page__main-section {
         padding: 10px;
     }

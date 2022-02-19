@@ -1,11 +1,11 @@
 .header {
-    background: #496DDB;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
     padding: 20px calc(50% - 500px) 10px;
 }
 
 .header__title {
     font-family: 'Luckiest Guy', cursive;
-    color: #FFEEDB;
+    color: #f5f1f5;
     font-size: 45px;
     margin-left: 40px;
 }

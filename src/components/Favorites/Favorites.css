@@ -23,7 +23,7 @@
 
 .favorites__save {
     border: none;
-    background-color: #496DDB;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
@@ -33,7 +33,7 @@
 .favorites__save:hover {
     cursor: pointer;
     opacity: 0.9;
-    transition: all 0.2s linear;
+    transition: all 0.2s linear
 }
 
 .favorites__save_hidden {
@@ -51,7 +51,7 @@
 @media(max-width: 700px) {
     .favorites {
         min-width: 300px;
-        margin-left: 40px;
+        margin: 10px;
         padding: 20px;
     }
     .favorites__list {
@@ -65,8 +65,14 @@
     }
 }
 
-@media(max-width: 321px) {
-    .favorites {
-        margin: 10px;
-    }
+.remove-film-button {
+    border: none;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    padding: 2px 7px;
+    color: #FFEEDB;
+}
+.remove-film-button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.2s linear;
 }

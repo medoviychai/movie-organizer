@@ -19,12 +19,10 @@ class Favorites extends Component {
             return film != elem
         })
         this.setState({movies: clone})
-        // console.log(elem);
     }
 
     handleChangeInp = e => {
         this.setState({title: e.target.value})
-        // console.log(this.state.title);
     }
 
     saveList = e => {
@@ -36,16 +34,11 @@ class Favorites extends Component {
             this.state.movies.filter(item => {
                 this.state.listId.push(item.id)
             });
-            // console.log(this.state.listId)
     
             const data = {
                 title: this.state.title,
-                movies:
-                    this.state.movies
-    
-            }
-            // console.log('data', data);
-    
+                movies: this.state.movies
+            }    
                 fetch('https://acb-api.algoritmika.org/api/movies/list/', {
                   method: 'POST',
                   body: JSON.stringify(data), 
@@ -55,7 +48,6 @@ class Favorites extends Component {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    
                     this.setState({listId: data.id})  
                     console.log("Data", data) 
                 })
@@ -74,7 +66,6 @@ class Favorites extends Component {
                 movies: state.favMovies
             })
         }) 
-        // console.log("fav state 2", this.state.movies);
     }
 
     getListId = (listId) => {
@@ -87,13 +78,12 @@ class Favorites extends Component {
     }
 
     render() { 
-        // console.log("fav state 2", this.state.movies);
         return (
             <div className="favorites">
                 <input value={this.state.title} onChange={this.handleChangeInp} className="favorites__name" disabled={this.state.inpDisable}/>
                 <ul className="favorites__list">
                     {this.state.movies.map((item, idx) => {
-                        return <li key={item.id}>{item.title} ({item.year}) <button onClick={() => this.removeFilm(idx)}>X</button></li>;
+                        return <li key={item.id}>{item.title} ({item.year}) <button className="remove-film-button" onClick={() => this.removeFilm(idx)}>X</button></li>;
                     })}
                 </ul>
                 <button type="button" className={this.state.buttonSaveClass} onClick={this.saveList}>Сохранить список</button>

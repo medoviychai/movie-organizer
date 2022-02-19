@@ -1,6 +1,6 @@
 .movie-item {
     padding: 20px;
-    background-color: #FFEEDB;
+    background: linear-gradient(to right, #ffefba, #f5f1f5);
     display: flex;
 }
 
@@ -17,7 +17,7 @@
 
 .movie-item__add-button {
     border: none;
-    background-color: #496DDB;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
     padding: 10px 15px;
     color: #FFEEDB;
     font-size: 14px;
